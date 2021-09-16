@@ -178,6 +178,7 @@ public class Rpg {
                                 }
                             }else if(selectStr.equals("status")){
                                 newPlayer.getBag().get(selectInt - 1).printItem();
+                                newPlayer.printAll();
                             }else if(selectStr.equals("exit")){
                                 break;
                             }
@@ -608,6 +609,7 @@ public class Rpg {
                 System.out.println();
                 newPlayer.supply();
                 System.out.println();
+                newPlayer.printAll();
                 System.out.println("請先選擇哪個道具(輸入數字) 不使用就輸入0");
                 int selectInt = sc.nextInt();
                 System.out.println();
@@ -624,6 +626,7 @@ public class Rpg {
                 if(selectStr.equals("use")){
                     boolean bo = newPlayer.use(selectInt);
                     //使用成功的訊息輸出已有寫在use方法 故只輸出 失敗使用
+                    newPlayer.printAll();
                     if(!bo){
                         System.out.println("此道具無法使用");
                     }
@@ -664,6 +667,7 @@ public class Rpg {
                 newPlayer.supply();
                 System.out.println();
                 System.out.println("請先選擇哪個道具(輸入數字) 不使用就輸入0");
+                newPlayer.printAll();
                 int selectInt = sc.nextInt();
                 System.out.println();
                 if(selectInt == 0){
@@ -689,6 +693,7 @@ public class Rpg {
                 }
                 System.out.println("還想用道具!? 認命戰鬥吧");
                 fight.startFight(newPlayer, animal);
+                newPlayer.printAll();
                 break;
 
         }
