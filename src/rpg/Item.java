@@ -175,7 +175,7 @@ public class Item {
     }
 
     public Item glass() {
-        ability.setName("玻璃");
+        ability.setName("玻璃    ");
         setUseable(false);
         setUseage("無功能");
         setPrice(1);
@@ -195,22 +195,11 @@ public class Item {
         return  this;
     }
 
-    public void printItem() {
-        System.out.print("名稱:" + ability.getName() +"\t"+"\t"+"\t"+"\t價格:" +getPrice()+"\t");
-        if (useable) {
-            System.out.println("\t用途:" + useage);
-            return;
-        }
-        System.out.println("\t用途:" + "無功能");
-    }
 
     public String getUseage() {
         return useage;
     }
 
-    /**
-     * 更改的部分
-     */
     public Item intelliIncreasePotion() {
         ability.setName("智慧增強藥水");
         setUseable(true);
@@ -249,6 +238,17 @@ public class Item {
         setBuffTime(2);
         return  this;
     }
+    public void printItem() {
+        System.out.print("名稱:" + ability.getName() +"\t"+"\t"+"\t"+"\t價格:" +getPrice()+"\t");
+        if (useable) {
+            System.out.println("\t用途:" + useage);
+            return;
+        }
+        System.out.println("\t用途:" + "無功能");
+    }
+
+
+
 
 
 }

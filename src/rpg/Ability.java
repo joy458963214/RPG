@@ -22,7 +22,7 @@ public class Ability {
     private ArrayList<Skill> skill = new ArrayList<Skill>(); //week2 技能陣列
 
 
-    public void setSkill(int id, int name, double probability, int cdTime, int level){
+    public void setSkill( int id, int name, int probability, int cdTime, int level){
         Skill newSkill = new Skill();
         newSkill.setId(id);
         newSkill.setName(name);
@@ -50,13 +50,6 @@ public class Ability {
     //week2 getIntelli
     public int getIntelli() {
         return intelli;
-    }
-    public void setMoney(int money) {
-        this.money=money;
-    }
-    //week2 getIntelli
-    public int getMoney() {
-        return money;
     }
     public String getName() {
         return name;
@@ -206,6 +199,14 @@ public class Ability {
 
     public void addExp(int value) {
         exp += value;
+    }
+
+    public void setMoney(int money) {
+        this.money=money;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public void lvUp() {

@@ -11,7 +11,6 @@ public class Player extends Character {
     private int positon;
     private boolean isFighting = false;
 
-
     public Player() {
         Ability initialAbility = new Ability();
         initialAbility.setArmorMaxmum(1);
@@ -26,10 +25,10 @@ public class Player extends Character {
         initialAbility.setCon(10 * initialAbility.getStr());
         initialAbility.setLV(1);
         initialAbility.setMaxExp(10);
-        initialAbility.setSkill( 8, 6, 1, 5, 2);
-        initialAbility.setSkill( 9, 7, 1, 2, 1);
-        initialAbility.setSkill( 10, 9, 1, 3, 1);
-        initialAbility.setMoney(0);
+        initialAbility.setSkill( 1, 6, 1, 5, 2);
+        initialAbility.setSkill( 2, 7, 1, 2, 1);
+        initialAbility.setSkill( 3, 9, 1, 3, 1);
+        initialAbility.setMoney(10);
         setAbility(initialAbility);
         positon = 0;  //起始位置在原點
     }
@@ -105,25 +104,53 @@ public class Player extends Character {
             System.out.println("輸入錯誤");
         }
     }
-
+    public void removeBag(int choose) {
+        if (choose <= bag.size()) {  //防呆
+            Item item = bag.get(choose - 1);
+            bag.remove(choose - 1);
+        }
+    }
+    public void itemEffect(Item item){
+        item=new Item();
+        getAbility().addStr(item.ability.getStr());
+        getAbility().addDex(item.ability.getHp());
+        getAbility().addHit(item.ability.getHit());
+        getAbility().addDef(item.ability.getIntelli());
+        getAbility().addDef(item.ability.getDef());
+    }
     public boolean use(int choose) {////使用背包東西(順便把背包裡的那個刪掉) + 回傳布林值判斷使用成功與否
         boolean isOk = false;
         if (choose <= bag.size()) {  //防呆
             Item item = bag.get(choose - 1);     //背包裡的那個東西
             if (item.isPermanentBuff()) { //先判斷是否為永久型buff型道具
                 buffList.add(item);
+                getAbility().addStr(item.ability.getStr());
+                getAbility().addDex(item.ability.getHp());
+                getAbility().addHit(item.ability.getHit());
+                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(choose - 1);
                 isOk = true;
             } else if (item.getBuffTime() > 0 && isFighting) { //判斷是否為戰鬥中使用的buff道具
                 buffList.add(item);
+                getAbility().addStr(item.ability.getStr());
+                getAbility().addDex(item.ability.getHp());
+                getAbility().addHit(item.ability.getHit());
+                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(choose - 1);
                 isOk = true;
             } else if (item.getUseable()) {   //其他種道具使用
                 getAbility().merge(item.ability);
+                getAbility().addStr(item.ability.getStr());
+                getAbility().addDex(item.ability.getHp());
+                getAbility().addHit(item.ability.getHit());
+                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(item);
@@ -177,6 +204,7 @@ public class Player extends Character {
             }
         }
     }
+
 
     public void supply() {
         for (int i = 0; i < bag.size(); i++) {
