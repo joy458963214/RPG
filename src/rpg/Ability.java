@@ -1,10 +1,8 @@
 package rpg;
-
+import java.util.ArrayList;
 public class Ability {
     private int maxHp = 0;
     private int hp = 0;
-    private int intelli = 0;
-    private int migDef=0;
     private int str = 0;          ///目前攻擊力=力量 未來應該會改善
     private int def = 0;
     private int hit = 0;
@@ -18,7 +16,48 @@ public class Ability {
     private int equipmentWeight = 0;
     private int maxExp = 0;
     private String name;
+    private int migDef =0; //week2 add 魔法防禦
+    private int intelli =0; //week2 add 智慧
+    private int money=0;
+    private ArrayList<Skill> skill = new ArrayList<Skill>(); //week2 技能陣列
 
+
+    public void setSkill(int id, int name, double probability, int cdTime, int level){
+        Skill newSkill = new Skill();
+        newSkill.setId(id);
+        newSkill.setName(name);
+        newSkill.setProbability(probability);
+        newSkill.setCdTime(cdTime);
+        newSkill.setLevel(level);
+        skill.add(newSkill);
+    }
+    public ArrayList<Skill> getSkill(){
+        return skill;
+    }
+
+    //week2 setMightDef
+    public void setMigDef(int migDef) {
+        this.migDef=migDef;
+    }
+    //week2 getMigDef
+    public int getMigDef() {
+        return migDef;
+    }
+    //week2 setIntelli
+    public void setIntelli(int intelli) {
+        this.intelli=intelli;
+    }
+    //week2 getIntelli
+    public int getIntelli() {
+        return intelli;
+    }
+    public void setMoney(int money) {
+        this.money=money;
+    }
+    //week2 getIntelli
+    public int getMoney() {
+        return money;
+    }
     public String getName() {
         return name;
     }
@@ -40,13 +79,6 @@ public class Ability {
         return hp;
     }
 
-    public void setIntelli(int intelli) {
-        this.intelli = intelli;
-    }
-    public int getIntelli() {
-        return intelli;
-    }
-
     public void setHp(int hp) {
         this.hp = hp;
     }
@@ -65,13 +97,6 @@ public class Ability {
 
     public void setDef(int def) {
         this.def = def;
-    }
-    public int getMigDef() {
-        return migDef;
-    }
-
-    public void setMigDef(int getMigDef) {
-        this.migDef = migDef;
     }
 
     public int getHit() {
@@ -219,6 +244,4 @@ public class Ability {
         equipmentWeight -= newAbility.equipmentWeight;
         setCon(str * 10);
     }
-
-
 }

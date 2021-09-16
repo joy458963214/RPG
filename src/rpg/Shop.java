@@ -1,26 +1,28 @@
 package rpg;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Shop {
     ArrayList<Item> itemList = new ArrayList<Item>();
     public enum OptionType {
-        i1(new Item().healingPotion()),
-        i2(new Item().powerIncreasePotion()),
-        i3(new Item().defenceIncreasePotion()),
-        i4(new Item().leather()),
-        i5(new Item().wolfLeg()),
-        i6(new Item().lionClaw()),
-        i7(new Item().pork()),
-        i8(new Item().amimalSlayerMark()),
+        i1(new Item().wolfLeg()),
+        i2(new Item().lionClaw()),
+        i3(new Item().pork()),
+        i4(new Item().wolfTooth()),
+        i5(new Item().glass()),
+        i6(new Item().strongAcid()),
+        i7(new Item().leather()),
+        i8(new Item().healingPotion()),
         i9(new Item().heartOfGhost()),
-        i10(new Item().wolfTooth()),
-        i11(new Item().glass()),
-        i12(new Item().demomSlayerMark()),
-        i13(new Item().intelliIncreasePotion()),
-        i14(new Item().strongAcid()),
-        i15(new Item().PowerBurst()),
-        i16(new Item().WisdomBurst());
+        i10(new Item().PowerBurst()),
+        i11(new Item().WisdomBurst()),
+        i12(new Item().intelliIncreasePotion()),
+        i13(new Item().powerIncreasePotion()),
+        i14(new Item().defenceIncreasePotion()),
+        i15(new Item().demomSlayerMark()),
+        i16(new Item().amimalSlayerMark());
+
 
         Item item;
         OptionType(Item item){
@@ -36,13 +38,47 @@ public class Shop {
         OptionType[] array = OptionType.values();
         for (int i = 0 ; i< array.length ; i ++){
             Item temp = array[i].item;
+            System.out.print(i+1+".");
             temp.printItem();
             itemList.add(temp);
         }
-//
     }
-
+    ////買商品
+    public void buy(Player player){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("錢包:"+player.getAbility().getMoney());
+        System.out.println("請輸入購買商品編號");
+        int buyNum=sc.nextInt();
+        Item buyItem= new Item();
+        buyItem=itemList.get(buyNum-1);
+        if(buyItem.getPrice()<=player.getAbility().getMoney()) {
+            System.out.println("購買成功");
+            player.ability.setMoney(-1 * (buyItem.getPrice()));
+            player.getItem(buyItem);
+        }else{
+            System.out.println("金額不足無法購買");
+        }
+    }
+    //賣商品
+    public void sell(Player player){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("錢包:"+player.getAbility().getMoney());
+        System.out.println("請輸入販賣商品編號");
+        int buyNum=sc.nextInt();
+        Item buyItem= new Item();
+        buyItem=itemList.get(buyNum-1);
+        if(buyItem.getPrice()<=player.getAbility().getMoney()) {
+            System.out.println("購買成功");
+            player.ability.setMoney(-1 * (buyItem.getPrice()));
+            player.getItem(buyItem);
+        }else{
+            System.out.println("金額不足無法購買");
+        }
+    }
 }
+
+
+
 
 
 

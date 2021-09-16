@@ -31,7 +31,7 @@ public class Fight {
         player.buffTakeEffect(monster); //buff生效
         if (player.getAbility().getDex() >= monster.getAbility().getDex()) { //判斷誰敏捷高誰先攻擊
             System.out.println(player.getAbility().getName() + "先攻");
-//            while (!player.isDead() && !monster.isDead()) {//沒有人死的話會一直打下去
+            //角色先攻 選擇普通攻擊 還是技能
             round++;
             System.out.println("\n第" + round + "回合");
             System.out.println(player.getAbility().getName() + "攻擊!");
@@ -41,10 +41,8 @@ public class Fight {
                 attack(monster, player);
             }
             player.buffCountDown(); //玩家buff扣除一回合
-//            }
         } else {
             System.out.println(monster.getAbility().getName() + "先攻");
-//            while (!player.isDead() && !monster.isDead()) {
             round++;
             System.out.println("\n第" + round + "回合");
             System.out.println(monster.getAbility().getName() + "攻擊!");
@@ -54,7 +52,7 @@ public class Fight {
                 attack(player, monster);
             }
             player.buffCountDown();
-//            }
+
         }
 //        round = 0;//round 歸零 //第二週：移到overFight內
 //        player.removeBuff(); //buff移除 //第二週：移到overFight內

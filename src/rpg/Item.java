@@ -5,11 +5,11 @@ public class Item {
     protected Ability ability = new Ability();
     private int buffTime;
     private boolean useable;
-    private int price;
     private String useage = "";
     private boolean isPermanentBuff;
     private int againstAnimalOrDemon = 0;
     private boolean isWeapon = false;
+    private int price;
 
 
     public boolean isWeapon() {
@@ -114,6 +114,7 @@ public class Item {
     public Item leather() {
         ability.setName("動物皮");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -121,6 +122,7 @@ public class Item {
     public Item wolfLeg() {
         ability.setName("狼腿");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -128,6 +130,7 @@ public class Item {
     public Item lionClaw() {
         ability.setName("獅爪");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -158,6 +161,7 @@ public class Item {
     public Item heartOfGhost() {
         ability.setName("幽魂之心");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -165,6 +169,7 @@ public class Item {
     public Item wolfTooth() {
         ability.setName("狼牙");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -172,6 +177,7 @@ public class Item {
     public Item glass() {
         ability.setName("玻璃");
         setUseable(false);
+        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -190,12 +196,12 @@ public class Item {
     }
 
     public void printItem() {
-        System.out.print("名稱:" + ability.getName() + "\t價格:" + this.price);
+        System.out.print("名稱:" + ability.getName() +"\t"+"\t"+"\t"+"\t價格:" +getPrice()+"\t");
         if (useable) {
             System.out.println("\t用途:" + useage);
             return;
         }
-        System.out.println("無功能");
+        System.out.println("\t用途:" + "無功能");
     }
 
     public String getUseage() {
