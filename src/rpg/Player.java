@@ -124,7 +124,7 @@ public class Player extends Character {
             Item item = bag.get(choose - 1);     //背包裡的那個東西
             if (item.isPermanentBuff()) { //先判斷是否為永久型buff型道具
                 buffList.add(item);
-                getAbility().addStr(item.ability.getStr());
+                getAbility().addStr(item.ability.getStr());//道具使用技能更改
                 getAbility().addDex(item.ability.getHp());
                 getAbility().addHit(item.ability.getHit());
                 getAbility().addDef(item.ability.getIntelli());
