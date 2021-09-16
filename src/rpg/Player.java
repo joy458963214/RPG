@@ -115,7 +115,7 @@ public class Player extends Character {
         getAbility().addStr(item.ability.getStr());
         getAbility().addDex(item.ability.getHp());
         getAbility().addHit(item.ability.getHit());
-        getAbility().addDef(item.ability.getIntelli());
+        getAbility().addIntelli(item.ability.getIntelli());
         getAbility().addDef(item.ability.getDef());
     }
     public boolean use(int choose) {////使用背包東西(順便把背包裡的那個刪掉) + 回傳布林值判斷使用成功與否
@@ -124,10 +124,10 @@ public class Player extends Character {
             Item item = bag.get(choose - 1);     //背包裡的那個東西
             if (item.isPermanentBuff()) { //先判斷是否為永久型buff型道具
                 buffList.add(item);
-                getAbility().addStr(item.ability.getStr());//道具使用技能更改
+                getAbility().addStr(item.ability.getStr());
                 getAbility().addDex(item.ability.getHp());
                 getAbility().addHit(item.ability.getHit());
-                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addIntelli(item.ability.getIntelli());
                 getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
@@ -138,7 +138,7 @@ public class Player extends Character {
                 getAbility().addStr(item.ability.getStr());
                 getAbility().addDex(item.ability.getHp());
                 getAbility().addHit(item.ability.getHit());
-                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addIntelli(item.ability.getIntelli());
                 getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
@@ -149,7 +149,7 @@ public class Player extends Character {
                 getAbility().addStr(item.ability.getStr());
                 getAbility().addDex(item.ability.getHp());
                 getAbility().addHit(item.ability.getHit());
-                getAbility().addDef(item.ability.getIntelli());
+                getAbility().addIntelli(item.ability.getIntelli());
                 getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());

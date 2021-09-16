@@ -196,6 +196,9 @@ public class Ability {
     public void addHit(int value) {
         hit += value;
     }
+    public void addIntelli(int value) {
+        intelli += value;
+    }
 
     public void addExp(int value) {
         exp += value;
