@@ -43,7 +43,7 @@ public class Rpg {
         System.out.println();
         System.out.println();
         System.out.println("~~~請享受你的冒險~~~");
-        Thread.sleep(1500);
+//        Thread.sleep(1500);
         System.out.println();
         System.out.println();
 
@@ -192,7 +192,7 @@ public class Rpg {
                         while(true){ //boss戰鬥
                             chooseOnFightWithBoss(newPlayer, boss, fight);
                             if(boss.isDead() || newPlayer.isDead()){ //怪物或角色一方死亡
-                                fight.overFight(newPlayer, boss);
+//                                fight.overFight(newPlayer, boss);
                                 break;
                             }else{
                                 System.out.println("戰鬥選擇功能正常");
@@ -206,7 +206,7 @@ public class Rpg {
                         while(true){ //boss戰鬥
                             chooseOnFightWithBoss(newPlayer, boss, fight);
                             if(boss.isDead() || newPlayer.isDead()){ //怪物或角色一方死亡
-                                fight.overFight(newPlayer, boss);
+//                                fight.overFight(newPlayer, boss);
                                 break;
                             }else{
                                 System.out.println("戰鬥選擇功能正常");
@@ -220,7 +220,7 @@ public class Rpg {
                         while(true){ //boss戰鬥
                             chooseOnFightWithBoss(newPlayer, boss, fight);
                             if(boss.isDead() || newPlayer.isDead()){ //怪物或角色一方死亡
-                                fight.overFight(newPlayer, boss);
+//                                fight.overFight(newPlayer, boss);
                                 break;
                             }else{
                                 System.out.println("戰鬥選擇功能正常");
@@ -254,10 +254,11 @@ public class Rpg {
                 //事件
                 int event = Random(0, 5);
 
+
                 if(shop.isIntoShop){        //如果已經進入shop則重新選擇1-4
                     event = Random(0, 4);
                 }
-                event = sc.nextInt();// 測試用調用順序所以不用更改
+                event = sc.nextInt();// 測試用
 
                 switch (event){
                     case 0://沒事發生
@@ -444,7 +445,7 @@ public class Rpg {
                     case 5:
                         shop.setIntoShop(true);  //已進入過商店
                         System.out.println("遇到流浪商人 ");
-                        Thread.sleep(1500);
+//                        Thread.sleep(1500);
                         boolean tf = true;
                         while (tf) {
                             System.out.println("選擇行動");
@@ -635,13 +636,13 @@ public class Rpg {
                     //使用成功的訊息輸出已有寫在use方法 故只輸出 失敗使用
                     if(!bo){
                         System.out.println("此道具無法使用");
-                        System.out.println("還想用道具!? 認命戰鬥吧");
                     }
                 }else if(selectStr.equals("status")){
                     newPlayer.getBag().get(selectInt - 1).printItem();
                 }else if(selectStr.equals("exit")){
                     System.out.println("背包關上");
                 }
+                System.out.println("還想用道具!? 認命戰鬥吧");
                 fight.startFight(newPlayer, animal);
                 break;
 

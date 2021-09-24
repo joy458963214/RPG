@@ -104,6 +104,7 @@ public class Item {
         setUseable(true);
         setPrice(2);
         setUseage("+2力量，持續兩次攻擊，戰鬥結束後消失");
+        setOriginalBuffTime(2);
         setBuffTime(2);
         return  this;
     }

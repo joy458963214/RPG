@@ -240,7 +240,6 @@ public class Ability {
         dex += newAbility.getDex();
         def += newAbility.getDef();
         hit += newAbility.getHit();
-        intelli+=newAbility.getIntelli();
         equipmentWeight += newAbility.equipmentWeight;
         setCon(str * 10);
     }

@@ -355,7 +355,6 @@ public class Fight {
             player.getItem(monster.getDropItem());
             System.out.println();
         }
-        player.removeBuff();
     }
 
     public void skillAttack(Character atker, Character defer, int whichSkill) throws InterruptedException {

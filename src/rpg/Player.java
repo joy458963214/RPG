@@ -116,7 +116,7 @@ public class Player extends Character {
         boolean isOk = false;
         if (choose <= bag.size()) {  //防呆
             Item item = bag.get(choose - 1);     //背包裡的那個東西
-            if (item.isPermanentBuff()) { //先判斷是否為永久型buff型道具
+            if (item.isPermanentBuff() ) { //先判斷是否為永久型buff型道具
                 buffList.add(item);
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
@@ -156,9 +156,7 @@ public class Player extends Character {
                 if (item.getAgainstAnimalOrDemon() == monster.getKind()) {  //判斷對何種怪物生效
                     getAbility().merge(item.ability);
                 }
-            } else if(item.getBuffTime()== item.getOriginalBuffTime()){
-                getAbility().merge(item.ability);
-                }
+            }
             }
         }
 
