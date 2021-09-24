@@ -5,11 +5,12 @@ public class Item {
     protected Ability ability = new Ability();
     private int buffTime;
     private boolean useable;
+    private int price;
     private String useage = "";
     private boolean isPermanentBuff;
     private int againstAnimalOrDemon = 0;
     private boolean isWeapon = false;
-    private int price;
+    private int originalBuffTime;
 
 
     public boolean isWeapon() {
@@ -57,6 +58,12 @@ public class Item {
     public void setBuffTime(int buffTime) {
         this.buffTime = buffTime;
     }
+    public void setOriginalBuffTime(int originalBuffTime) {
+        this.originalBuffTime= originalBuffTime;
+    }
+    public int getOriginalBuffTime() {
+        return originalBuffTime;
+    }
 
     public void reduceBuffTime() {
         buffTime--;
@@ -94,7 +101,7 @@ public class Item {
     public Item powerIncreasePotion() {
         ability.setName("力量增強藥水");
         ability.setStr(2);
-        setUseable(false);
+        setUseable(true);
         setPrice(2);
         setUseage("+2力量，持續兩次攻擊，戰鬥結束後消失");
         setBuffTime(2);
@@ -104,17 +111,17 @@ public class Item {
     public Item defenceIncreasePotion() {
         ability.setName("防禦增強藥水");
         ability.setDef(2);
-        setUseable(false);
+        setUseable(true);
         setPrice(2);
         setUseage("+2防禦，持續兩次攻擊，戰鬥結束後消失");
         setBuffTime(2);
+        setOriginalBuffTime(2);
         return this;
     }
 
     public Item leather() {
         ability.setName("動物皮");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -122,7 +129,6 @@ public class Item {
     public Item wolfLeg() {
         ability.setName("狼腿");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -130,7 +136,6 @@ public class Item {
     public Item lionClaw() {
         ability.setName("獅爪");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -151,6 +156,7 @@ public class Item {
         ability.setStr(1);
         setUseable(true);
         setPrice(4);
+        setOriginalBuffTime(99);
         setBuffTime(99);
         setUseage("與動物戰鬥時，+1攻擊力,+1命中");
         setPermanentBuff(true);
@@ -161,7 +167,6 @@ public class Item {
     public Item heartOfGhost() {
         ability.setName("幽魂之心");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -169,15 +174,13 @@ public class Item {
     public Item wolfTooth() {
         ability.setName("狼牙");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
 
     public Item glass() {
-        ability.setName("玻璃    ");
+        ability.setName("玻璃");
         setUseable(false);
-        setUseage("無功能");
         setPrice(1);
         return  this;
     }
@@ -189,17 +192,29 @@ public class Item {
         setUseable(true);
         setPrice(4);
         setBuffTime(99);
+        setOriginalBuffTime(99);
         setUseage("與魔物戰鬥時，+1攻擊力,+1命中");
         setPermanentBuff(true);
         setAgainstAnimalOrDemon(2);
         return  this;
     }
 
+    public void printItem() {
+        System.out.print("名稱:" + ability.getName() + "\t價格:" + this.price);
+        if (useable) {
+            System.out.println("\t用途:" + useage);
+            return;
+        }
+        System.out.println("無功能");
+    }
 
     public String getUseage() {
         return useage;
     }
 
+    /**
+     * 更改的部分
+     */
     public Item intelliIncreasePotion() {
         ability.setName("智慧增強藥水");
         setUseable(true);
@@ -207,6 +222,7 @@ public class Item {
         setPrice(3);
         setUseage("+2智慧 持續兩次攻擊，戰鬥結束後消失");
         setBuffTime(2);
+        setOriginalBuffTime(2);
         return  this;
     }
     public Item strongAcid() {
@@ -216,6 +232,7 @@ public class Item {
         setPrice(4);
         setUseage("怪物 防禦-2 持續三次攻擊，戰鬥結束後消失");
         setBuffTime(3);
+        setOriginalBuffTime(3);
         return  this;
     }
     public Item PowerBurst() {
@@ -226,6 +243,7 @@ public class Item {
         setPrice(5);
         setUseage("+3力量 -4防禦，持續兩次攻擊，戰鬥結束後消失");
         setBuffTime(2);
+        setOriginalBuffTime(2);
         return  this;
     }
     public Item WisdomBurst() {
@@ -236,19 +254,22 @@ public class Item {
         setPrice(4);
         setUseage("+3智慧，持續兩次攻擊，戰鬥結束或者是效果結束後損失兩2滴血量，若血量歸0，則死亡");
         setBuffTime(2);
+        setOriginalBuffTime(2);
         return  this;
     }
-    public void printItem() {
-        System.out.print("名稱:" + ability.getName() +"\t"+"\t"+"\t"+"\t價格:" +getPrice()+"\t");
-        if (useable) {
-            System.out.println("\t用途:" + useage);
-            return;
-        }
-        System.out.println("\t用途:" + "無功能");
-    }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "ability=" + ability +
+                ", buffTime=" + buffTime +
+                ", useable=" + useable +
+                ", price=" + price +
+                ", useage='" + useage + '\'' +
+                ", isPermanentBuff=" + isPermanentBuff +
+                ", againstAnimalOrDemon=" + againstAnimalOrDemon +
+                ", isWeapon=" + isWeapon +
+                ", isArmor=" + isArmor +
+                '}';
+    }//測試用
 }

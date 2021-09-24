@@ -24,10 +24,11 @@ public class Player extends Character {
         initialAbility.setHit(5);
         initialAbility.setCon(10 * initialAbility.getStr());
         initialAbility.setLV(1);
+        initialAbility.setIntelli(5);
         initialAbility.setMaxExp(10);
-        initialAbility.setSkill( 1, 6, 1, 5, 2);
-        initialAbility.setSkill( 2, 7, 1, 2, 1);
-        initialAbility.setSkill( 3, 9, 1, 3, 1);
+        initialAbility.setSkill( 6, 6, 1, 5, 2,"傷害: 智慧*2");
+        initialAbility.setSkill( 7, 7, 1, 2, 1,"傷害: 智慧");
+        initialAbility.setSkill( 9, 9, 1, 3, 1,"傷害: 智慧+2");
         initialAbility.setMoney(10);
         setAbility(initialAbility);
         positon = 0;  //起始位置在原點
@@ -110,47 +111,26 @@ public class Player extends Character {
             bag.remove(choose - 1);
         }
     }
-    public void itemEffect(Item item){
-        item=new Item();
-        getAbility().addStr(item.ability.getStr());
-        getAbility().addDex(item.ability.getHp());
-        getAbility().addHit(item.ability.getHit());
-        getAbility().addIntelli(item.ability.getIntelli());
-        getAbility().addDef(item.ability.getDef());
-    }
+
     public boolean use(int choose) {////使用背包東西(順便把背包裡的那個刪掉) + 回傳布林值判斷使用成功與否
         boolean isOk = false;
         if (choose <= bag.size()) {  //防呆
             Item item = bag.get(choose - 1);     //背包裡的那個東西
             if (item.isPermanentBuff()) { //先判斷是否為永久型buff型道具
                 buffList.add(item);
-                getAbility().addStr(item.ability.getStr());
-                getAbility().addDex(item.ability.getHp());
-                getAbility().addHit(item.ability.getHit());
-                getAbility().addIntelli(item.ability.getIntelli());
-                getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(choose - 1);
                 isOk = true;
-            } else if (item.getBuffTime() > 0 && isFighting) { //判斷是否為戰鬥中使用的buff道具
+            } else if (item.getBuffTime() > 0 && isFighting ) { //判斷是否為戰鬥中使用的buff道具
                 buffList.add(item);
-                getAbility().addStr(item.ability.getStr());
-                getAbility().addDex(item.ability.getHp());
-                getAbility().addHit(item.ability.getHit());
-                getAbility().addIntelli(item.ability.getIntelli());
-                getAbility().addDef(item.ability.getDef());
+                getAbility().merge(item.ability);
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(choose - 1);
                 isOk = true;
             } else if (item.getUseable()) {   //其他種道具使用
                 getAbility().merge(item.ability);
-                getAbility().addStr(item.ability.getStr());
-                getAbility().addDex(item.ability.getHp());
-                getAbility().addHit(item.ability.getHit());
-                getAbility().addIntelli(item.ability.getIntelli());
-                getAbility().addDef(item.ability.getDef());
                 System.out.println("成功使用");
                 System.out.println(item.getUseage());
                 bag.remove(item);
@@ -176,11 +156,12 @@ public class Player extends Character {
                 if (item.getAgainstAnimalOrDemon() == monster.getKind()) {  //判斷對何種怪物生效
                     getAbility().merge(item.ability);
                 }
-            } else {
+            } else if(item.getBuffTime()== item.getOriginalBuffTime()){
                 getAbility().merge(item.ability);
+                }
             }
         }
-    }
+
 
     public void buffCountDown() {  //buff倒數 (不管永久性buff)
         for (int i = 0; i < buffList.size(); i++) {
@@ -197,8 +178,11 @@ public class Player extends Character {
     public void removeBuff() {
         for (int i = 0; i < buffList.size(); i++) {
             if (!buffList.get(i).isPermanentBuff()) {
+//                printAll();//測試用
                 getAbility().unMerge(buffList.get(i).ability);  //復原狀態
+//                System.out.println(buffList.toString()+"測試用removebuff");//測試用
                 buffList.remove(buffList.get(i--)); //至buff列表移除
+//                printAll();//測試用
             } else {
                 getAbility().unMerge(buffList.get(i).ability); //永久性buff只會復原狀態不移除
             }

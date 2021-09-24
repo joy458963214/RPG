@@ -49,6 +49,6 @@ public class Weapon extends Item {
     }
 
     public void printItem() {
-        System.out.println(ability.getName() + " 攻擊力: " + ability.getStr() + " 重量: " + ability.getEquipmentWeight()+ " 智慧: " + ability.getIntelli());
+        System.out.println(ability.getName() + " 攻擊力: " + ability.getStr() + " 重量: " + ability.getEquipmentWeight()+ " 魔法攻擊力: " + ability.getIntelli());
     }
 }

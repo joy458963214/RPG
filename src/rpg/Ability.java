@@ -22,13 +22,14 @@ public class Ability {
     private ArrayList<Skill> skill = new ArrayList<Skill>(); //week2 技能陣列
 
 
-    public void setSkill( int id, int name, int probability, int cdTime, int level){
+    public void setSkill( int id, int name, int probability, int cdTime, int level, String info){
         Skill newSkill = new Skill();
         newSkill.setId(id);
         newSkill.setName(name);
         newSkill.setProbability(probability);
         newSkill.setCdTime(cdTime);
         newSkill.setLevel(level);
+        newSkill.setInfo(info);
         skill.add(newSkill);
     }
     public ArrayList<Skill> getSkill(){
@@ -58,7 +59,6 @@ public class Ability {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public int getMaxHp() {
         return maxHp;
@@ -196,6 +196,7 @@ public class Ability {
     public void addHit(int value) {
         hit += value;
     }
+
     public void addIntelli(int value) {
         intelli += value;
     }
@@ -220,9 +221,11 @@ public class Ability {
         return "各項素質:\n" +
                 "血量(當前/最大): " + getHp() + "/" + getMaxHp() + "\n" +
                 "力量: " + getStr() + "\n" +
+                "智慧: " + getIntelli() + "\n" +
                 "敏捷: " + getDex() + "\n" +
                 "命中: " + getHit() + "\n" +
-                "防禦: " + getDef() + "\n";
+                "防禦: " + getDef() + "\n" +
+                "魔法防禦: " + getMigDef() + "\n";
     }
 
     public void merge(Ability newAbility) {
@@ -231,20 +234,25 @@ public class Ability {
         if (hp > maxHp) {
             hp = maxHp;
         }
-        str += newAbility.str;
-        dex += newAbility.dex;
-        def += newAbility.def;
-        hit += newAbility.hit;
+        str += newAbility.getStr();
+        intelli += newAbility.getIntelli();
+        migDef += newAbility.getMigDef();
+        dex += newAbility.getDex();
+        def += newAbility.getDef();
+        hit += newAbility.getHit();
+        intelli+=newAbility.getIntelli();
         equipmentWeight += newAbility.equipmentWeight;
         setCon(str * 10);
     }
 
     public void unMerge(Ability newAbility) {
-        hp -= newAbility.hp;
-        str -= newAbility.str;
-        dex -= newAbility.dex;
-        def -= newAbility.def;
-        hit -= newAbility.hit;
+//        hp -= newAbility.hp;
+        str -= newAbility.getStr();
+        intelli -= newAbility.getIntelli();
+        migDef -= newAbility.getMigDef();
+        dex -= newAbility.getDex();
+        def -= newAbility.getDef();
+        hit -= newAbility.getHit();
         equipmentWeight -= newAbility.equipmentWeight;
         setCon(str * 10);
     }
